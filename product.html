@@ -3,20 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Color Analyzer - Produk</title>
+    <title>ColorRun | Personal Color Analyzer + Riwayat</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: system-ui, 'Segoe UI', sans-serif;
         }
         body {
+            font-family: system-ui, 'Segoe UI', sans-serif;
             background: #f4ede4;
             padding: 20px;
         }
+        nav {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 40px;
+            margin-bottom: 24px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #b1624b;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
         .container {
-            max-width: 750px;
+            max-width: 800px;
             margin: auto;
             background: white;
             border-radius: 32px;
@@ -66,17 +88,34 @@
             background: #b97f5a;
             color: white;
         }
+        .submit-btn, .reset-btn, .save-btn, .clear-history-btn {
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin: 8px 5px;
+        }
         .submit-btn {
             background: #7c5a3e;
             color: white;
-            border: none;
-            width: 100%;
-            padding: 14px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 60px;
-            margin: 20px 0 15px;
-            cursor: pointer;
+            width: calc(100% - 10px);
+        }
+        .reset-btn {
+            background: #e0c8b5;
+            color: #5a3e2b;
+        }
+        .save-btn {
+            background: #b1624b;
+            color: white;
+        }
+        .clear-history-btn {
+            background: #d9b8a4;
+            color: #4a2e2e;
+            font-size: 0.8rem;
+            padding: 6px 12px;
         }
         .result-area {
             background: #fff6ed;
@@ -100,80 +139,116 @@
             border: 2px solid white;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
+        .history-section {
+            margin-top: 20px;
+            background: #faf3ea;
+            border-radius: 24px;
+            padding: 15px;
+        }
+        .history-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+        .history-item {
+            background: white;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .history-item button {
+            background: #f0cfbc;
+            border: none;
+            border-radius: 50px;
+            padding: 4px 12px;
+            cursor: pointer;
+        }
         .footer {
             font-size: 0.7rem;
             text-align: center;
             margin-top: 20px;
             color: #9b7b62;
         }
-        @media (max-width: 500px) {
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #b1624b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @media (max-width: 600px) {
             .container { padding: 16px; }
-            .option-btn { padding: 6px 14px; }
+            .option-btn { padding: 6px 12px; font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="design.html">Design</a></li>
+        <li><a href="product.html">Product</a></li>
+    </ul>
+</nav>
 <div class="container">
     <h1>🎨 Personal Color Studio</h1>
-    <div class="sub">Temukan musim warnamu: Winter, Summer, Autumn, Spring</div>
+    <div class="sub">Temukan musim warnamu + simpan riwayat ✨</div>
 
-    <!-- 4 pertanyaan -->
     <div id="questions"></div>
 
-    <button class="submit-btn" id="analyzeBtn">✨ Analisa Warna Saya ✨</button>
+    <button class="submit-btn" id="analyzeBtn">🔮 Analisa Warna Saya</button>
+    <div style="display: flex; gap: 10px; margin: 10px 0;">
+        <button class="reset-btn" id="resetBtn">⟳ Mulai Ulang</button>
+    </div>
 
     <div id="hasil" class="result-area"></div>
-    <div class="footer">Jawab semua pertanyaan dengan jujur agar hasil akurat ✨</div>
+
+    <!-- Riwayat hasil -->
+    <div class="history-section" id="historySection">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <strong>📜 Riwayat Hasil</strong>
+            <button id="clearHistoryBtn" class="clear-history-btn">Hapus Semua</button>
+        </div>
+        <div id="historyList" class="history-list">
+            <p style="color: #b97f5a; text-align: center;">Belum ada riwayat. Setelah analisa, klik "Simpan Hasil".</p>
+        </div>
+    </div>
+
+    <div class="footer">Jawab semua pertanyaan, simpan hasil, dan lihat riwayatmu ✨</div>
 </div>
 
 <script>
     // ========= DATA PERTANYAAN ==========
     const daftarPertanyaan = [
-        {
-            teks: "1️⃣ Lihat warna pembuluh darah di pergelangan tangan (dalam ruangan terang).",
-            pilihan: [
-                { nilai: "cool", label: "💙 Biru / Ungu" },
-                { nilai: "warm", label: "💚 Hijau / Zaitun" },
-                { nilai: "neutral", label: "🤍 Campuran biru-hijau" }
-            ]
-        },
-        {
-            teks: "2️⃣ Kontras antara warna rambut, kulit, dan mata kamu?",
-            pilihan: [
-                { nilai: "high", label: "🔆 Tinggi (rambut gelap, kulit cerah, kontras jelas)" },
-                { nilai: "medium", label: "🌈 Sedang (cukup beda tapi natural)" },
-                { nilai: "low", label: "🍂 Rendah (warna rambut & kulit senada)" }
-            ]
-        },
-        {
-            teks: "3️⃣ Warna matamu yang paling dominan?",
-            pilihan: [
-                { nilai: "dark", label: "👁️ Coklat tua / Hitam" },
-                { nilai: "light", label: "🌟 Biru / Abu / Hijau muda / Hazel terang" },
-                { nilai: "warmBrown", label: "🍯 Coklat madu / Coklat keemasan" }
-            ]
-        },
-        {
-            teks: "4️⃣ Reaksi kulitmu setelah terkena sinar matahari?",
-            pilihan: [
-                { nilai: "burn", label: "🔥 Mudah merah / terbakar, susah coklat" },
-                { nilai: "tan", label: "☀️ Mudah coklat (tan), jarang terbakar" },
-                { nilai: "both", label: "🌤️ Kadang terbakar, kadang coklat" }
-            ]
-        }
+        { teks: "1️⃣ Lihat warna pembuluh darah di pergelangan tangan (dalam ruangan terang).", pilihan: [{ nilai: "cool", label: "💙 Biru / Ungu" }, { nilai: "warm", label: "💚 Hijau / Zaitun" }, { nilai: "neutral", label: "🤍 Campuran biru-hijau" }] },
+        { teks: "2️⃣ Kontras antara warna rambut, kulit, dan mata kamu?", pilihan: [{ nilai: "high", label: "🔆 Tinggi (rambut gelap, kulit cerah)" }, { nilai: "medium", label: "🌈 Sedang" }, { nilai: "low", label: "🍂 Rendah" }] },
+        { teks: "3️⃣ Warna matamu yang paling dominan?", pilihan: [{ nilai: "dark", label: "👁️ Coklat tua / Hitam" }, { nilai: "light", label: "🌟 Biru / Abu / Hijau muda" }, { nilai: "warmBrown", label: "🍯 Coklat madu / Keemasan" }] },
+        { teks: "4️⃣ Reaksi kulitmu setelah terkena sinar matahari?", pilihan: [{ nilai: "burn", label: "🔥 Mudah terbakar" }, { nilai: "tan", label: "☀️ Mudah coklat (tan)" }, { nilai: "both", label: "🌤️ Kadang terbakar, kadang coklat" }] }
     ];
 
-    // Menyimpan jawaban
     let jawaban = { 0: null, 1: null, 2: null, 3: null };
+    let hasilTerakhir = null;  // menyimpan objek season terakhir untuk disimpan
 
-    // Render pertanyaan ke layar
+    // Render pertanyaan
     function tampilkanPertanyaan() {
         const wadah = document.getElementById("questions");
         wadah.innerHTML = "";
-        daftarPertanyaan.forEach((q, index) => {
+        daftarPertanyaan.forEach((q, idx) => {
             const card = document.createElement("div");
             card.className = "question-card";
-            card.innerHTML = `<div class="question-text">${q.teks}</div><div class="options" data-idx="${index}"></div>`;
+            card.innerHTML = `<div class="question-text">${q.teks}</div><div class="options" data-idx="${idx}"></div>`;
             const divOpt = card.querySelector(".options");
             q.pilihan.forEach(opt => {
                 const tombol = document.createElement("button");
@@ -181,11 +256,9 @@
                 tombol.innerText = opt.label;
                 tombol.dataset.nilai = opt.nilai;
                 tombol.addEventListener("click", () => {
-                    // Hapus class selected dari semua tombol dalam grup ini
-                    const semuaTombol = divOpt.querySelectorAll(".option-btn");
-                    semuaTombol.forEach(btn => btn.classList.remove("selected"));
+                    divOpt.querySelectorAll(".option-btn").forEach(btn => btn.classList.remove("selected"));
                     tombol.classList.add("selected");
-                    jawaban[index] = opt.nilai;
+                    jawaban[idx] = opt.nilai;
                 });
                 divOpt.appendChild(tombol);
             });
@@ -193,103 +266,142 @@
         });
     }
 
-    // Logika menentukan season (Winter, Summer, Autumn, Spring)
+    // Logika season (sama seperti sebelumnya)
     function hitungSeason(jawab) {
-        const undertone = jawab[0];
-        const kontras = jawab[1];
-        const warnaMata = jawab[2];
-        const reaksiMatahari = jawab[3];
-
-        if (!undertone || !kontras || !warnaMata || !reaksiMatahari) return null;
-
-        // Aturan khusus (dibuat sederhana tapi masuk akal)
-        // Winter: cool + high contrast + (dark eyes atau light eyes) + burn
-        if (undertone === "cool" && kontras === "high" && (warnaMata === "dark" || warnaMata === "light") && reaksiMatahari === "burn") {
-            return { season: "Winter", tipe: "Dingin & Kontras Tinggi", vibe: "Elegan, tegas" };
-        }
-        // Summer: cool + (medium/low contrast) + light eyes + (burn or both)
-        if (undertone === "cool" && (kontras === "medium" || kontras === "low") && warnaMata === "light" && (reaksiMatahari === "burn" || reaksiMatahari === "both")) {
-            return { season: "Summer", tipe: "Dingin & Lembut", vibe: "Kalem, romantis" };
-        }
-        // Autumn: warm + (low/medium contrast) + warmBrown/dark eyes + tan
-        if ((undertone === "warm" || undertone === "neutral") && (kontras === "low" || kontras === "medium") && (warnaMata === "warmBrown" || warnaMata === "dark") && (reaksiMatahari === "tan" || reaksiMatahari === "both")) {
-            return { season: "Autumn", tipe: "Hangat & Natural", vibe: "Bumi, hangat" };
-        }
-        // Spring: warm + (high/medium contrast) + light/warmBrown eyes + tan
-        if ((undertone === "warm" || undertone === "neutral") && (kontras === "high" || kontras === "medium") && (warnaMata === "light" || warnaMata === "warmBrown") && (reaksiMatahari === "tan" || reaksiMatahari === "both")) {
-            return { season: "Spring", tipe: "Hangat & Cerah", vibe: "Segar, ceria" };
-        }
-
-        // Fallback jika tidak masuk perfect match
-        if (undertone === "cool") return { season: "Summer", tipe: "Cool tone", vibe: "Lembut" };
-        if (undertone === "warm") return { season: "Spring", tipe: "Warm tone", vibe: "Cerah" };
-        return { season: "Autumn", tipe: "Netral hangat", vibe: "Alami" };
+        const u = jawab[0], k = jawab[1], m = jawab[2], r = jawab[3];
+        if (!u || !k || !m || !r) return null;
+        if (u === "cool" && k === "high" && (m === "dark" || m === "light") && r === "burn") return { season: "Winter", tipe: "Dingin & Kontras Tinggi", vibe: "Elegan, tegas", emoji: "❄️", outfitIcon: "🧥👗", makeupIcon: "💄" };
+        if (u === "cool" && (k === "medium" || k === "low") && m === "light" && (r === "burn" || r === "both")) return { season: "Summer", tipe: "Dingin & Lembut", vibe: "Kalem, romantis", emoji: "🌼", outfitIcon: "👚🌸", makeupIcon: "💖" };
+        if ((u === "warm" || u === "neutral") && (k === "low" || k === "medium") && (m === "warmBrown" || m === "dark") && (r === "tan" || r === "both")) return { season: "Autumn", tipe: "Hangat & Natural", vibe: "Bumi, hangat", emoji: "🍂", outfitIcon: "🧣🍁", makeupIcon: "🧡" };
+        if ((u === "warm" || u === "neutral") && (k === "high" || k === "medium") && (m === "light" || m === "warmBrown") && (r === "tan" || r === "both")) return { season: "Spring", tipe: "Hangat & Cerah", vibe: "Segar, ceria", emoji: "🌸", outfitIcon: "👒🌷", makeupIcon: "✨" };
+        if (u === "cool") return { season: "Summer", tipe: "Cool tone", vibe: "Lembut", emoji: "🌼", outfitIcon: "👚", makeupIcon: "💄" };
+        if (u === "warm") return { season: "Spring", tipe: "Warm tone", vibe: "Cerah", emoji: "🌸", outfitIcon: "👒", makeupIcon: "✨" };
+        return { season: "Autumn", tipe: "Netral hangat", vibe: "Alami", emoji: "🍂", outfitIcon: "🧣", makeupIcon: "🧡" };
     }
 
-    // Palet warna per season
     function paletWarna(season) {
-        const data = {
-            Winter: ["#0B132B", "#D90429", "#EDF2F4", "#8D99AE", "#2B2D42"],
-            Summer: ["#B0C4DE", "#D8BFD8", "#C2A7C2", "#E6E6FA", "#9DB4C0"],
-            Autumn: ["#8B4513", "#CD853F", "#BC9A6C", "#556B2F", "#C17A3A"],
-            Spring: ["#F9C74F", "#F9844A", "#90BE6D", "#F9E45B", "#F7B05E"]
-        };
+        const data = { Winter: ["#0B132B", "#D90429", "#EDF2F4", "#8D99AE", "#2B2D42"], Summer: ["#B0C4DE", "#D8BFD8", "#C2A7C2", "#E6E6FA", "#9DB4C0"], Autumn: ["#8B4513", "#CD853F", "#BC9A6C", "#556B2F", "#C17A3A"], Spring: ["#F9C74F", "#F9844A", "#90BE6D", "#F9E45B", "#F7B05E"] };
         return data[season] || data.Spring;
     }
 
-    // Rekomendasi outfit & makeup
     function rekomendasi(season) {
         const list = {
-            Winter: { outfit: "Warna solid dan jenuh: hitam, putih, merah darah, biru dongker, fuschia. Hindari pastel kusam.", makeup: "Lipstik merah atau berry, eyeliner hitam tegas, blush pink dingin." },
-            Summer: { outfit: "Pastel lembut: lavender, dusty pink, baby blue, abu-abu muda.", makeup: "Lipstik pink muda atau nude pink, eyeshadow abu keunguan." },
-            Autumn: { outfit: "Warna earthy: coklat, hijau zaitun, mustard, burnt orange, krem.", makeup: "Lipstik bata, coklat kemerahan, blush peach tua." },
-            Spring: { outfit: "Warna cerah hangat: coral, peach, hijau apel, kuning mentega.", makeup: "Lipstik coral atau peach, eyeshadow emas muda, highlighter." }
+            Winter: { outfit: "Hitam, putih, merah darah, biru dongker, fuschia", makeup: "Lipstik merah/berry, eyeliner tegas" },
+            Summer: { outfit: "Pastel lembut: lavender, dusty pink, baby blue", makeup: "Lipstik pink muda, eyeshadow abu" },
+            Autumn: { outfit: "Coklat, hijau zaitun, mustard, burnt orange", makeup: "Lipstik bata, blush peach tua" },
+            Spring: { outfit: "Coral, peach, hijau apel, kuning mentega", makeup: "Lipstik coral, eyeshadow emas" }
         };
         return list[season];
     }
 
-    // Tampilkan hasil
-    function tampilkanHasil() {
-        const seasonObj = hitungSeason(jawaban);
+    function tampilkanHasil(seasonObj, isNew = true) {
         if (!seasonObj) {
-            alert("Harap jawab semua 4 pertanyaan terlebih dahulu!");
-            return;
+            alert("Harap jawab semua pertanyaan!");
+            return null;
         }
         const palet = paletWarna(seasonObj.season);
         const rec = rekomendasi(seasonObj.season);
         const hasilDiv = document.getElementById("hasil");
-        
-        let bgWarna = "#fff6ed";
-        if (seasonObj.season === "Winter") bgWarna = "#e9f0f5";
-        if (seasonObj.season === "Summer") bgWarna = "#f2eaf2";
-        if (seasonObj.season === "Autumn") bgWarna = "#faebd2";
-        if (seasonObj.season === "Spring") bgWarna = "#fff2df";
-
+        let bgWarna = { Winter: "#e9f0f5", Summer: "#f2eaf2", Autumn: "#faebd2", Spring: "#fff2df" }[seasonObj.season] || "#fff6ed";
         hasilDiv.style.display = "block";
         hasilDiv.style.background = bgWarna;
         hasilDiv.innerHTML = `
             <div style="text-align:center">
                 <h2>✨ Hasil Personal Color ✨</h2>
                 <div style="font-size:2rem; font-weight:bold; background:#fff3e0; display:inline-block; padding:8px 20px; border-radius:60px; margin:8px 0;">
-                    ${seasonObj.season} ${seasonObj.season === "Winter" ? "❄️" : seasonObj.season === "Summer" ? "🌼" : seasonObj.season === "Autumn" ? "🍂" : "🌸"}
+                    ${seasonObj.season} ${seasonObj.emoji}
                 </div>
                 <p><strong>Karakteristik:</strong> ${seasonObj.tipe} — ${seasonObj.vibe}</p>
                 <div class="palette">
                     ${palet.map(w => `<div class="color-chip" style="background:${w};" title="${w}"></div>`).join('')}
                 </div>
                 <div style="margin-top:12px; text-align:left">
-                    <p><strong>👗 Rekomendasi Outfit:</strong> ${rec.outfit}</p>
-                    <p><strong>💄 Rekomendasi Makeup:</strong> ${rec.makeup}</p>
+                    <p><strong>👗 Rekomendasi Outfit:</strong> ${seasonObj.outfitIcon} ${rec.outfit}</p>
+                    <p><strong>💄 Rekomendasi Makeup:</strong> ${seasonObj.makeupIcon} ${rec.makeup}</p>
                 </div>
+                <button id="saveResultBtn" class="save-btn" style="margin-top:12px;">💾 Simpan Hasil ke Riwayat</button>
                 <p style="margin-top:16px; font-size:0.85rem;">🌟 Gunakan warna-warna di atas untuk tampil maksimal!</p>
             </div>
         `;
-        hasilDiv.scrollIntoView({ behavior: "smooth" });
+        document.getElementById("saveResultBtn")?.addEventListener("click", () => simpanKeRiwayat(seasonObj));
+        return seasonObj;
     }
 
-    // Inisialisasi
+    // ========= RIWAYAT (LocalStorage) ==========
+    function simpanKeRiwayat(seasonObj) {
+        if (!seasonObj) return;
+        let history = JSON.parse(localStorage.getItem("colorrun_history")) || [];
+        const newEntry = {
+            id: Date.now(),
+            season: seasonObj.season,
+            emoji: seasonObj.emoji,
+            tipe: seasonObj.tipe,
+            vibe: seasonObj.vibe,
+            tanggal: new Date().toLocaleString(),
+            outfitIcon: seasonObj.outfitIcon,
+            makeupIcon: seasonObj.makeupIcon
+        };
+        history.unshift(newEntry); // tambah di awal
+        if (history.length > 10) history.pop(); // maks 10
+        localStorage.setItem("colorrun_history", JSON.stringify(history));
+        tampilkanRiwayat();
+        alert("✅ Hasil disimpan ke riwayat!");
+    }
+
+    function tampilkanRiwayat() {
+        const history = JSON.parse(localStorage.getItem("colorrun_history")) || [];
+        const container = document.getElementById("historyList");
+        if (history.length === 0) {
+            container.innerHTML = '<p style="color: #b97f5a; text-align: center;">Belum ada riwayat. Setelah analisa, klik "Simpan Hasil".</p>';
+            return;
+        }
+        container.innerHTML = history.map(item => `
+            <div class="history-item">
+                <div><strong>${item.season} ${item.emoji}</strong> - ${item.tipe}<br><small>${item.tanggal}</small></div>
+                <button onclick="hapusSatuRiwayat(${item.id})">🗑️ Hapus</button>
+            </div>
+        `).join('');
+    }
+
+    function hapusSatuRiwayat(id) {
+        let history = JSON.parse(localStorage.getItem("colorrun_history")) || [];
+        history = history.filter(item => item.id !== id);
+        localStorage.setItem("colorrun_history", JSON.stringify(history));
+        tampilkanRiwayat();
+    }
+
+    function hapusSemuaRiwayat() {
+        if (confirm("Hapus semua riwayat?")) {
+            localStorage.removeItem("colorrun_history");
+            tampilkanRiwayat();
+        }
+    }
+
+    // Reset kuis
+    function resetKuis() {
+        jawaban = { 0: null, 1: null, 2: null, 3: null };
+        document.querySelectorAll(".option-btn").forEach(btn => btn.classList.remove("selected"));
+        document.getElementById("hasil").style.display = "none";
+        hasilTerakhir = null;
+    }
+
+    // Event utama
+    document.getElementById("analyzeBtn").addEventListener("click", () => {
+        const seasonObj = hitungSeason(jawaban);
+        if (!seasonObj) {
+            alert("Jawab semua pertanyaan dulu ya!");
+            return;
+        }
+        hasilTerakhir = seasonObj;
+        tampilkanHasil(seasonObj);
+    });
+    document.getElementById("resetBtn").addEventListener("click", resetKuis);
+    document.getElementById("clearHistoryBtn").addEventListener("click", hapusSemuaRiwayat);
+
+    window.hapusSatuRiwayat = hapusSatuRiwayat;
+
     tampilkanPertanyaan();
-    document.getElementById("analyzeBtn").addEventListener("click", tampilkanHasil);
+    tampilkanRiwayat();
 </script>
 </body>
 </html>
