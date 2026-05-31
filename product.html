@@ -1,51 +1,295 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Color Analyzer - Produk</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, 'Segoe UI', sans-serif;
+        }
+        body {
+            background: #f4ede4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            border-radius: 32px;
+            padding: 24px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            font-size: 1.9rem;
+            color: #5a3e2b;
+        }
+        .sub {
+            text-align: center;
+            color: #a16b47;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #ffdbc2;
+            padding-bottom: 12px;
+        }
+        .question-card {
+            background: #fefaf5;
+            border-radius: 24px;
+            padding: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .question-text {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: #4f2d1a;
+        }
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .option-btn {
+            background: #efe2d6;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .option-btn.selected {
+            background: #b97f5a;
+            color: white;
+        }
+        .submit-btn {
+            background: #7c5a3e;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            margin: 20px 0 15px;
+            cursor: pointer;
+        }
+        .result-area {
+            background: #fff6ed;
+            border-radius: 24px;
+            padding: 20px;
+            display: none;
+            margin-top: 20px;
+            border-left: 6px solid #b97f5a;
+        }
+        .palette {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 15px 0;
+            justify-content: center;
+        }
+        .color-chip {
+            width: 55px;
+            height: 55px;
+            border-radius: 16px;
+            border: 2px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .footer {
+            font-size: 0.7rem;
+            text-align: center;
+            margin-top: 20px;
+            color: #9b7b62;
+        }
+        @media (max-width: 500px) {
+            .container { padding: 16px; }
+            .option-btn { padding: 6px 14px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🎨 Personal Color Studio</h1>
+    <div class="sub">Temukan musim warnamu: Winter, Summer, Autumn, Spring</div>
 
-<html>
-    <head>
-        <meta charset="utf-8">
+    <!-- 4 pertanyaan -->
+    <div id="questions"></div>
 
-        <title>Blank template</title>
+    <button class="submit-btn" id="analyzeBtn">✨ Analisa Warna Saya ✨</button>
 
-        <!-- Load external CSS styles -->
-        <link rel="stylesheet" href="styles.css">
-
-    </head>
-
-    <body>
-
-        <h1>Welcome To ColoRun!</h1> 
-        <ul>
-            
-            <li> <a href="index.html"> Home </a> </li>
-            <li> <a href="design.html"> Design </a> </li>
-            <li>  Product </li>
-            
-           </Ul>    
-        
-<br>
-<marquee> design by: Moonzcrew </marquee>
-<br>
-<P> Halo semuanya! Kami dari Moonz Crew 👋
-Dengan penuh semangat, kami memperkenalkan produk kami yang bernama Colorun 🎨
-
-Colorun bukan sekadar produk biasa, ini adalah wujud kreativitas, ide, dan kerja sama tim kami. Kami percaya bahwa setiap orang punya warna uniknya masing-masing, dan melalui Colorun, kami ingin mengajak kalian untuk mengekspresikan diri, menemukan inspirasi, dan menikmati setiap prosesnya.
-
-Dengan produk ini, kalian bisa mengenal lebih dekat tentang siapa kami, apa yang kami buat, dan cerita di balik perjalanan kami. Semoga apa yang kami hadirkan bisa memberikan kesan menyenangkan, inspirasi baru, dan mungkin… sedikit warna untuk hari kalian 🌈
-Selamat menjelajah dan terima kasih sudah berkunjung 💫 </P>
-   <br>
-
-<div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAHCnTafxGs/Aj3ft33Sy489TN8hoKnhlw/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
+    <div id="hasil" class="result-area"></div>
+    <div class="footer">Jawab semua pertanyaan dengan jujur agar hasil akurat ✨</div>
 </div>
-<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAHCnTafxGs&#x2F;Aj3ft33Sy489TN8hoKnhlw&#x2F;view?utm_content=DAHCnTafxGs&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Find Your Own Color Here</a> by Raqeela Khusus
 
-        <!-- Load external JavaScript -->
-        <script src="scripts.js"></script>
+<script>
+    // ========= DATA PERTANYAAN ==========
+    const daftarPertanyaan = [
+        {
+            teks: "1️⃣ Lihat warna pembuluh darah di pergelangan tangan (dalam ruangan terang).",
+            pilihan: [
+                { nilai: "cool", label: "💙 Biru / Ungu" },
+                { nilai: "warm", label: "💚 Hijau / Zaitun" },
+                { nilai: "neutral", label: "🤍 Campuran biru-hijau" }
+            ]
+        },
+        {
+            teks: "2️⃣ Kontras antara warna rambut, kulit, dan mata kamu?",
+            pilihan: [
+                { nilai: "high", label: "🔆 Tinggi (rambut gelap, kulit cerah, kontras jelas)" },
+                { nilai: "medium", label: "🌈 Sedang (cukup beda tapi natural)" },
+                { nilai: "low", label: "🍂 Rendah (warna rambut & kulit senada)" }
+            ]
+        },
+        {
+            teks: "3️⃣ Warna matamu yang paling dominan?",
+            pilihan: [
+                { nilai: "dark", label: "👁️ Coklat tua / Hitam" },
+                { nilai: "light", label: "🌟 Biru / Abu / Hijau muda / Hazel terang" },
+                { nilai: "warmBrown", label: "🍯 Coklat madu / Coklat keemasan" }
+            ]
+        },
+        {
+            teks: "4️⃣ Reaksi kulitmu setelah terkena sinar matahari?",
+            pilihan: [
+                { nilai: "burn", label: "🔥 Mudah merah / terbakar, susah coklat" },
+                { nilai: "tan", label: "☀️ Mudah coklat (tan), jarang terbakar" },
+                { nilai: "both", label: "🌤️ Kadang terbakar, kadang coklat" }
+            ]
+        }
+    ];
+
+    // Menyimpan jawaban
+    let jawaban = { 0: null, 1: null, 2: null, 3: null };
+
+    // Render pertanyaan ke layar
+    function tampilkanPertanyaan() {
+        const wadah = document.getElementById("questions");
+        wadah.innerHTML = "";
+        daftarPertanyaan.forEach((q, index) => {
+            const card = document.createElement("div");
+            card.className = "question-card";
+            card.innerHTML = `<div class="question-text">${q.teks}</div><div class="options" data-idx="${index}"></div>`;
+            const divOpt = card.querySelector(".options");
+            q.pilihan.forEach(opt => {
+                const tombol = document.createElement("button");
+                tombol.className = "option-btn";
+                tombol.innerText = opt.label;
+                tombol.dataset.nilai = opt.nilai;
+                tombol.addEventListener("click", () => {
+                    // Hapus class selected dari semua tombol dalam grup ini
+                    const semuaTombol = divOpt.querySelectorAll(".option-btn");
+                    semuaTombol.forEach(btn => btn.classList.remove("selected"));
+                    tombol.classList.add("selected");
+                    jawaban[index] = opt.nilai;
+                });
+                divOpt.appendChild(tombol);
+            });
+            wadah.appendChild(card);
+        });
+    }
+
+    // Logika menentukan season (Winter, Summer, Autumn, Spring)
+    function hitungSeason(jawab) {
+        const undertone = jawab[0];
+        const kontras = jawab[1];
+        const warnaMata = jawab[2];
+        const reaksiMatahari = jawab[3];
+
+        if (!undertone || !kontras || !warnaMata || !reaksiMatahari) return null;
+
+        // Aturan khusus (dibuat sederhana tapi masuk akal)
+        // Winter: cool + high contrast + (dark eyes atau light eyes) + burn
+        if (undertone === "cool" && kontras === "high" && (warnaMata === "dark" || warnaMata === "light") && reaksiMatahari === "burn") {
+            return { season: "Winter", tipe: "Dingin & Kontras Tinggi", vibe: "Elegan, tegas" };
+        }
+        // Summer: cool + (medium/low contrast) + light eyes + (burn or both)
+        if (undertone === "cool" && (kontras === "medium" || kontras === "low") && warnaMata === "light" && (reaksiMatahari === "burn" || reaksiMatahari === "both")) {
+            return { season: "Summer", tipe: "Dingin & Lembut", vibe: "Kalem, romantis" };
+        }
+        // Autumn: warm + (low/medium contrast) + warmBrown/dark eyes + tan
+        if ((undertone === "warm" || undertone === "neutral") && (kontras === "low" || kontras === "medium") && (warnaMata === "warmBrown" || warnaMata === "dark") && (reaksiMatahari === "tan" || reaksiMatahari === "both")) {
+            return { season: "Autumn", tipe: "Hangat & Natural", vibe: "Bumi, hangat" };
+        }
+        // Spring: warm + (high/medium contrast) + light/warmBrown eyes + tan
+        if ((undertone === "warm" || undertone === "neutral") && (kontras === "high" || kontras === "medium") && (warnaMata === "light" || warnaMata === "warmBrown") && (reaksiMatahari === "tan" || reaksiMatahari === "both")) {
+            return { season: "Spring", tipe: "Hangat & Cerah", vibe: "Segar, ceria" };
+        }
+
+        // Fallback jika tidak masuk perfect match
+        if (undertone === "cool") return { season: "Summer", tipe: "Cool tone", vibe: "Lembut" };
+        if (undertone === "warm") return { season: "Spring", tipe: "Warm tone", vibe: "Cerah" };
+        return { season: "Autumn", tipe: "Netral hangat", vibe: "Alami" };
+    }
+
+    // Palet warna per season
+    function paletWarna(season) {
+        const data = {
+            Winter: ["#0B132B", "#D90429", "#EDF2F4", "#8D99AE", "#2B2D42"],
+            Summer: ["#B0C4DE", "#D8BFD8", "#C2A7C2", "#E6E6FA", "#9DB4C0"],
+            Autumn: ["#8B4513", "#CD853F", "#BC9A6C", "#556B2F", "#C17A3A"],
+            Spring: ["#F9C74F", "#F9844A", "#90BE6D", "#F9E45B", "#F7B05E"]
+        };
+        return data[season] || data.Spring;
+    }
+
+    // Rekomendasi outfit & makeup
+    function rekomendasi(season) {
+        const list = {
+            Winter: { outfit: "Warna solid dan jenuh: hitam, putih, merah darah, biru dongker, fuschia. Hindari pastel kusam.", makeup: "Lipstik merah atau berry, eyeliner hitam tegas, blush pink dingin." },
+            Summer: { outfit: "Pastel lembut: lavender, dusty pink, baby blue, abu-abu muda.", makeup: "Lipstik pink muda atau nude pink, eyeshadow abu keunguan." },
+            Autumn: { outfit: "Warna earthy: coklat, hijau zaitun, mustard, burnt orange, krem.", makeup: "Lipstik bata, coklat kemerahan, blush peach tua." },
+            Spring: { outfit: "Warna cerah hangat: coral, peach, hijau apel, kuning mentega.", makeup: "Lipstik coral atau peach, eyeshadow emas muda, highlighter." }
+        };
+        return list[season];
+    }
+
+    // Tampilkan hasil
+    function tampilkanHasil() {
+        const seasonObj = hitungSeason(jawaban);
+        if (!seasonObj) {
+            alert("Harap jawab semua 4 pertanyaan terlebih dahulu!");
+            return;
+        }
+        const palet = paletWarna(seasonObj.season);
+        const rec = rekomendasi(seasonObj.season);
+        const hasilDiv = document.getElementById("hasil");
         
-    </body>
+        let bgWarna = "#fff6ed";
+        if (seasonObj.season === "Winter") bgWarna = "#e9f0f5";
+        if (seasonObj.season === "Summer") bgWarna = "#f2eaf2";
+        if (seasonObj.season === "Autumn") bgWarna = "#faebd2";
+        if (seasonObj.season === "Spring") bgWarna = "#fff2df";
 
+        hasilDiv.style.display = "block";
+        hasilDiv.style.background = bgWarna;
+        hasilDiv.innerHTML = `
+            <div style="text-align:center">
+                <h2>✨ Hasil Personal Color ✨</h2>
+                <div style="font-size:2rem; font-weight:bold; background:#fff3e0; display:inline-block; padding:8px 20px; border-radius:60px; margin:8px 0;">
+                    ${seasonObj.season} ${seasonObj.season === "Winter" ? "❄️" : seasonObj.season === "Summer" ? "🌼" : seasonObj.season === "Autumn" ? "🍂" : "🌸"}
+                </div>
+                <p><strong>Karakteristik:</strong> ${seasonObj.tipe} — ${seasonObj.vibe}</p>
+                <div class="palette">
+                    ${palet.map(w => `<div class="color-chip" style="background:${w};" title="${w}"></div>`).join('')}
+                </div>
+                <div style="margin-top:12px; text-align:left">
+                    <p><strong>👗 Rekomendasi Outfit:</strong> ${rec.outfit}</p>
+                    <p><strong>💄 Rekomendasi Makeup:</strong> ${rec.makeup}</p>
+                </div>
+                <p style="margin-top:16px; font-size:0.85rem;">🌟 Gunakan warna-warna di atas untuk tampil maksimal!</p>
+            </div>
+        `;
+        hasilDiv.scrollIntoView({ behavior: "smooth" });
+    }
+
+    // Inisialisasi
+    tampilkanPertanyaan();
+    document.getElementById("analyzeBtn").addEventListener("click", tampilkanHasil);
+</script>
+</body>
 </html>
