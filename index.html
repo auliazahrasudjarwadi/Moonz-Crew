@@ -1,51 +1,161 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ColorRun | Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<html>
-    <head>
-        <meta charset="utf-8">
+        body {
+            font-family: system-ui, 'Segoe UI', 'Poppins', sans-serif;
+            background: linear-gradient(145deg, #f9f3e6 0%, #ffe6e6 100%);
+            color: #2d2a2a;
+            padding: 1.5rem;
+            min-height: 100vh;
+        }
 
-        <title>Blank template</title>
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        }
 
-        <!-- Load external CSS styles -->
-        <link rel="stylesheet" href="styles.css">
+        /* Navigasi di atas */
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #ffdbc2;
+        }
 
-    </head>
+        .top-nav a {
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #b1624b;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            transition: 0.2s;
+        }
 
-    <body>
+        .top-nav a:hover {
+            background: #ffdbc2;
+            color: #7c4a35;
+        }
 
-        <h1>Welcome To ColoRun!</h1> 
-        <ul>
-            
-            <li>  Home </li>
-            <li> <a href="design.html"> Design </a> </li>
-            <li> <a href="product.html"> Product </a> </li>
-            
-           </Ul>    
-        
-<br>
-<marquee> design by: Moonzcrew </marquee>
-<br>
-<P> Halo semuanya! Kami dari Moonz Crew 👋
-Dengan penuh semangat, kami memperkenalkan produk kami yang bernama Colorun 🎨
+        /* Judul */
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #5a3e2b;
+            margin-bottom: 0.5rem;
+        }
 
-Colorun bukan sekadar produk biasa, ini adalah wujud kreativitas, ide, dan kerja sama tim kami. Kami percaya bahwa setiap orang punya warna uniknya masing-masing, dan melalui Colorun, kami ingin mengajak kalian untuk mengekspresikan diri, menemukan inspirasi, dan menikmati setiap prosesnya.
+        .sub {
+            text-align: center;
+            color: #b1624b;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
 
-Dengan produk ini, kalian bisa mengenal lebih dekat tentang siapa kami, apa yang kami buat, dan cerita di balik perjalanan kami. Semoga apa yang kami hadirkan bisa memberikan kesan menyenangkan, inspirasi baru, dan mungkin… sedikit warna untuk hari kalian 🌈
-Selamat menjelajah dan terima kasih sudah berkunjung 💫 </P>
-   <br>
+        /* Teks introduction */
+        .intro-text {
+            background: #fff8f0;
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: 1rem;
+            color: #3b2b2b;
+            border-left: 6px solid #b1624b;
+        }
 
-<div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAHCnTafxGs/Aj3ft33Sy489TN8hoKnhlw/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
+        /* Embed Canva */
+        .canva-embed {
+            margin: 2rem 0;
+        }
+
+        .canva-embed iframe {
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ffdbc2;
+            font-size: 0.8rem;
+            color: #9b7b62;
+        }
+
+        footer a {
+            color: #b1624b;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.2rem;
+            }
+            .top-nav {
+                gap: 1rem;
+            }
+            .top-nav a {
+                font-size: 1rem;
+                padding: 0.3rem 0.8rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Menu Navigasi -->
+    <div class="top-nav">
+        <a href="index.html">🏠 Home</a>
+        <a href="design.html">📐 Design</a>
+        <a href="product.html">🎨 Product</a>
+    </div>
+
+    <!-- Judul -->
+    <h1>🎨 ColorRun</h1>
+    <div class="sub">✨ Find Your Own Color Here by Moonzcrew ✨</div>
+
+    <!-- Teks Introduction (persis seperti yang kamu tulis) -->
+    <div class="intro-text">
+        <p>Halo semuanya! Kami dari Moonz Crew 👋 Dengan penuh semangat, kami memperkenalkan produk kami yang bernama Colorun 🎨 Colorun bukan sekadar produk biasa, ini adalah wujud kreativitas, ide, dan kerja sama tim kami. Kami percaya bahwa setiap orang punya warna uniknya masing-masing, dan melalui Colorun, kami ingin mengajak kalian untuk mengekspresikan diri, menemukan inspirasi, dan menikmati setiap prosesnya. Dengan produk ini, kalian bisa mengenal lebih dekat tentang siapa kami, apa yang kami buat, dan cerita di balik perjalanan kami. Semoga apa yang kami hadirkan bisa memberikan kesan menyenangkan, inspirasi baru, dan mungkin… sedikit warna untuk hari kalian 🌈 Selamat menjelajah dan terima kasih sudah berkunjung 💫</p>
+    </div>
+
+    <!-- Embed Canva (perkenalan anggota) -->
+    <div class="canva-embed">
+        <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 0; margin-bottom: 0; overflow: hidden; border-radius: 8px; will-change: transform;">
+            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;"
+                src="https://www.canva.com/design/DAHCnTafxGs/Aj3ft33Sy489TN8hoKnhlw/view?embed" 
+                allowfullscreen="allowfullscreen" allow="fullscreen">
+            </iframe>
+        </div>
+        <a href="https://www.canva.com/design/DAHCnTafxGs/Aj3ft33Sy489TN8hoKnhlw/view?utm_content=DAHCnTafxGs&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener" style="display: block; text-align: center; margin-top: 8px; font-size: 0.8rem; color: #b1624b;">Lihat di Canva</a>
+    </div>
+
+    <footer>
+        <p>© 2025 Moonz Crew - ColorRun | Temukan warna terbaikmu dan bersinar 🌟</p>
+    </footer>
 </div>
-<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAHCnTafxGs&#x2F;Aj3ft33Sy489TN8hoKnhlw&#x2F;view?utm_content=DAHCnTafxGs&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Find Your Own Color Here</a> by Moonzcrew      
-
-        <!-- Load external JavaScript -->
-        <script src="scripts.js"></script>
-        
-    </body>
-
+</body>
 </html>
