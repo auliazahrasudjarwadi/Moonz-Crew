@@ -3,116 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ColoRun | Design Process</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: system-ui, 'Segoe UI', 'Poppins', sans-serif;
-            background: linear-gradient(145deg, #f9f3e6 0%, #ffe6e6 100%);
-            color: #2d2a2a;
-            padding: 1.5rem;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 2rem;
-            padding: 2rem;
-            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-        }
-        /* Navigasi di atas */
-        .top-nav {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 3px solid #ffdbc2;
-        }
-        .top-nav a {
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #b1624b;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            transition: 0.2s;
-        }
-        .top-nav a:hover {
-            background: #ffdbc2;
-            color: #7c4a35;
-        }
-        /* Judul */
-        h1 {
-            text-align: center;
-            font-size: 2rem;
-            color: #5a3e2b;
-            margin-bottom: 1.5rem;
-        }
-        /* Embed Canva */
-        .canva-embed {
-            margin: 1rem 0;
-        }
-        .canva-embed iframe {
-            width: 100%;
-            border-radius: 1rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-        footer {
-            text-align: center;
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid #ffdbc2;
-            font-size: 0.8rem;
-            color: #9b7b62;
-        }
-        @media (max-width: 600px) {
-            .container {
-                padding: 1.2rem;
-            }
-            .top-nav {
-                gap: 1rem;
-            }
-            .top-nav a {
-                font-size: 1rem;
-                padding: 0.3rem 0.8rem;
-            }
-            h1 {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
+    <title>ColorRun | Design Process</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="container">
-    <!-- Menu Navigasi -->
     <div class="top-nav">
         <a href="index.html">🏠 Home</a>
         <a href="design.html">📐 Design</a>
         <a href="product.html">🎨 Product</a>
     </div>
-
-    <h1>📐 Design Process</h1>
-
-    <!-- Embed Canva (design process) -->
-    <div class="canva-embed">
-        <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">
-            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;"
-                src="https://www.canva.com/design/DAHI26J4Pbo/QwH4kNHQb17KOSVdo2y1wg/view?embed" 
-                allowfullscreen="allowfullscreen" allow="fullscreen">
-            </iframe>
-        </div>
-        <a href="https://www.canva.com/design/DAHI26J4Pbo/QwH4kNHQb17KOSVdo2y1wg/view?utm_content=DAHI26J4Pbo&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener" style="display: block; text-align: center; margin-top: 8px; font-size: 0.8rem; color: #b1624b;">Lihat di Canva</a>
+    <h1 class="design-title">📐 Design Process</h1>
+    <div style="position: relative; width: 100%; height: 0; padding-top: 56.25%; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin: 1.6em 0; overflow: hidden; border-radius: 8px;">
+        <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none;"
+            src="https://www.canva.com/design/DAHI26J4Pbo/QwH4kNHQb17KOSVdo2y1wg/view?embed" allowfullscreen>
+        </iframe>
     </div>
-
-    <footer>
-        <p>© 2026 Moonz Crew - ColorRun | Temukan warna terbaikmu dan bersinar 🌟</p>
-    </footer>
+    <footer>© 2026 Moonz Crew - ColoRun</footer>
 </div>
 </body>
 </html>
