@@ -3,245 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ColorRun | Personal Color Analyzer + Riwayat</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: system-ui, 'Segoe UI', sans-serif;
-            background: #f4ede4;
-            padding: 20px;
-        }
-        nav {
-            background: white;
-            padding: 12px 20px;
-            border-radius: 40px;
-            margin-bottom: 24px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-        }
-        nav a {
-            text-decoration: none;
-            color: #b1624b;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            border-radius: 32px;
-            padding: 24px 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            font-size: 1.9rem;
-            color: #5a3e2b;
-        }
-        .sub {
-            text-align: center;
-            color: #a16b47;
-            margin-bottom: 24px;
-            border-bottom: 2px solid #ffdbc2;
-            padding-bottom: 12px;
-        }
-        .question-card {
-            background: #fefaf5;
-            border-radius: 24px;
-            padding: 18px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .question-text {
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 12px;
-            color: #4f2d1a;
-        }
-        .options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .option-btn {
-            background: #efe2d6;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 40px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .option-btn.selected {
-            background: #b97f5a;
-            color: white;
-        }
-        .submit-btn, .reset-btn, .save-btn, .clear-history-btn {
-            border: none;
-            padding: 12px 20px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 60px;
-            cursor: pointer;
-            transition: 0.2s;
-            margin: 8px 5px;
-        }
-        .submit-btn {
-            background: #7c5a3e;
-            color: white;
-            width: calc(100% - 10px);
-        }
-        .reset-btn {
-            background: #e0c8b5;
-            color: #5a3e2b;
-        }
-        .save-btn {
-            background: #b1624b;
-            color: white;
-        }
-        .clear-history-btn {
-            background: #d9b8a4;
-            color: #4a2e2e;
-            font-size: 0.8rem;
-            padding: 6px 12px;
-        }
-        .result-area {
-            background: #fff6ed;
-            border-radius: 24px;
-            padding: 20px;
-            display: none;
-            margin-top: 20px;
-            border-left: 6px solid #b97f5a;
-        }
-        .palette {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 15px 0;
-            justify-content: center;
-        }
-        .color-chip {
-            width: 55px;
-            height: 55px;
-            border-radius: 16px;
-            border: 2px solid white;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-        .history-section {
-            margin-top: 20px;
-            background: #faf3ea;
-            border-radius: 24px;
-            padding: 15px;
-        }
-        .history-list {
-            max-height: 200px;
-            overflow-y: auto;
-            margin-top: 10px;
-        }
-        .history-item {
-            background: white;
-            margin: 8px 0;
-            padding: 10px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .history-item button {
-            background: #f0cfbc;
-            border: none;
-            border-radius: 50px;
-            padding: 4px 12px;
-            cursor: pointer;
-        }
-        .footer {
-            font-size: 0.7rem;
-            text-align: center;
-            margin-top: 20px;
-            color: #9b7b62;
-        }
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #b1624b;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-left: 10px;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        @media (max-width: 600px) {
-            .container { padding: 16px; }
-            .option-btn { padding: 6px 12px; font-size: 0.8rem; }
-        }
-    </style>
+    <title>ColorRun | Personal Color Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<nav>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="design.html">Design</a></li>
-        <li><a href="product.html">Product</a></li>
-    </ul>
-</nav>
-<div class="container">
+<div class="product-container">
+    <div class="top-nav">
+        <a href="index.html">🏠 Home</a>
+        <a href="design.html">📐 Design</a>
+        <a href="product.html">🎨 Product</a>
+    </div>
     <h1>🎨 Personal Color Studio</h1>
-    <div class="sub">Temukan musim warnamu ✨</div>
+    <div class="sub">Temukan musim warnamu: Winter, Summer, Autumn, Spring</div>
 
     <div id="questions"></div>
 
-    <button class="submit-btn" id="analyzeBtn">🔮 Analisa Warna Saya</button>
-    <div style="display: flex; gap: 10px; margin: 10px 0;">
-        <button class="reset-btn" id="resetBtn">⟳ Mulai Ulang</button>
-    </div>
+    <button class="submit-btn" id="analyzeBtn">✨ Analisa Warna Saya ✨</button>
 
     <div id="hasil" class="result-area"></div>
-
-    <!-- Riwayat hasil -->
-    <div class="history-section" id="historySection">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <strong>📜 Riwayat Hasil</strong>
-            <button id="clearHistoryBtn" class="clear-history-btn">Hapus Semua</button>
-        </div>
-        <div id="historyList" class="history-list">
-            <p style="color: #b97f5a; text-align: center;">Belum ada riwayat. Setelah analisa, klik "Simpan Hasil".</p>
-        </div>
-    </div>
-
-    <div class="footer">Jawab semua pertanyaan dan simpan hasil ✨</div>
+    <footer>Jawab semua pertanyaan dengan jujur ✨</footer>
 </div>
 
 <script>
-    // ========= DATA PERTANYAAN ==========
     const daftarPertanyaan = [
         { teks: "1️⃣ Lihat warna pembuluh darah di pergelangan tangan (dalam ruangan terang).", pilihan: [{ nilai: "cool", label: "💙 Biru / Ungu" }, { nilai: "warm", label: "💚 Hijau / Zaitun" }, { nilai: "neutral", label: "🤍 Campuran biru-hijau" }] },
-        { teks: "2️⃣ Kontras antara warna rambut, kulit, dan mata kamu?", pilihan: [{ nilai: "high", label: "🔆 Tinggi (rambut gelap, kulit cerah)" }, { nilai: "medium", label: "🌈 Sedang" }, { nilai: "low", label: "🍂 Rendah" }] },
-        { teks: "3️⃣ Warna matamu yang paling dominan?", pilihan: [{ nilai: "dark", label: "👁️ Coklat tua / Hitam" }, { nilai: "light", label: "🌟 Biru / Hijau muda" }, { nilai: "warmBrown", label: "🍯 Coklat madu / Keemasan" }] },
-        { teks: "4️⃣ Reaksi kulitmu setelah terkena sinar matahari?", pilihan: [{ nilai: "burn", label: "🔥 Mudah terbakar" }, { nilai: "tan", label: "☀️ Mudah coklat (tan)" }, { nilai: "both", label: "🌤️ Kadang terbakar, kadang coklat" }] }
+        { teks: "2️⃣ Kontras antara warna rambut, kulit, dan mata kamu?", pilihan: [{ nilai: "high", label: "🔆 Tinggi" }, { nilai: "medium", label: "🌈 Sedang" }, { nilai: "low", label: "🍂 Rendah" }] },
+        { teks: "3️⃣ Warna matamu yang paling dominan?", pilihan: [{ nilai: "dark", label: "👁️ Coklat tua / Hitam" }, { nilai: "light", label: "🌟 Biru / Abu / Hijau muda" }, { nilai: "warmBrown", label: "🍯 Coklat madu / Keemasan" }] },
+        { teks: "4️⃣ Reaksi kulitmu setelah terkena sinar matahari?", pilihan: [{ nilai: "burn", label: "🔥 Mudah terbakar" }, { nilai: "tan", label: "☀️ Mudah coklat (tan)" }, { nilai: "both", label: "🌤️ Kadang keduanya" }] }
     ];
 
     let jawaban = { 0: null, 1: null, 2: null, 3: null };
-    let hasilTerakhir = null;  // menyimpan objek season terakhir untuk disimpan
 
-    // Render pertanyaan
     function tampilkanPertanyaan() {
         const wadah = document.getElementById("questions");
         wadah.innerHTML = "";
@@ -266,21 +58,29 @@
         });
     }
 
-    // Logika season (sama seperti sebelumnya)
     function hitungSeason(jawab) {
         const u = jawab[0], k = jawab[1], m = jawab[2], r = jawab[3];
         if (!u || !k || !m || !r) return null;
-        if (u === "cool" && k === "high" && (m === "dark" || m === "light") && r === "burn") return { season: "Winter", tipe: "Dingin & Kontras Tinggi", vibe: "Elegan, tegas", emoji: "❄️", outfitIcon: "🧥👗", makeupIcon: "💄" };
-        if (u === "cool" && (k === "medium" || k === "low") && m === "light" && (r === "burn" || r === "both")) return { season: "Summer", tipe: "Dingin & Lembut", vibe: "Kalem, romantis", emoji: "🌼", outfitIcon: "👚🌸", makeupIcon: "💖" };
-        if ((u === "warm" || u === "neutral") && (k === "low" || k === "medium") && (m === "warmBrown" || m === "dark") && (r === "tan" || r === "both")) return { season: "Autumn", tipe: "Hangat & Natural", vibe: "Bumi, hangat", emoji: "🍂", outfitIcon: "🧣🍁", makeupIcon: "🧡" };
-        if ((u === "warm" || u === "neutral") && (k === "high" || k === "medium") && (m === "light" || m === "warmBrown") && (r === "tan" || r === "both")) return { season: "Spring", tipe: "Hangat & Cerah", vibe: "Segar, ceria", emoji: "🌸", outfitIcon: "👒🌷", makeupIcon: "✨" };
-        if (u === "cool") return { season: "Summer", tipe: "Cool tone", vibe: "Lembut", emoji: "🌼", outfitIcon: "👚", makeupIcon: "💄" };
-        if (u === "warm") return { season: "Spring", tipe: "Warm tone", vibe: "Cerah", emoji: "🌸", outfitIcon: "👒", makeupIcon: "✨" };
-        return { season: "Autumn", tipe: "Netral hangat", vibe: "Alami", emoji: "🍂", outfitIcon: "🧣", makeupIcon: "🧡" };
+        if (u === "cool" && k === "high" && (m === "dark" || m === "light") && r === "burn")
+            return { season: "Winter", tipe: "Dingin & Kontras Tinggi", vibe: "Elegan, tegas", emoji: "❄️" };
+        if (u === "cool" && (k === "medium" || k === "low") && m === "light" && (r === "burn" || r === "both"))
+            return { season: "Summer", tipe: "Dingin & Lembut", vibe: "Kalem, romantis", emoji: "🌼" };
+        if ((u === "warm" || u === "neutral") && (k === "low" || k === "medium") && (m === "warmBrown" || m === "dark") && (r === "tan" || r === "both"))
+            return { season: "Autumn", tipe: "Hangat & Natural", vibe: "Bumi, hangat", emoji: "🍂" };
+        if ((u === "warm" || u === "neutral") && (k === "high" || k === "medium") && (m === "light" || m === "warmBrown") && (r === "tan" || r === "both"))
+            return { season: "Spring", tipe: "Hangat & Cerah", vibe: "Segar, ceria", emoji: "🌸" };
+        if (u === "cool") return { season: "Summer", tipe: "Cool tone", vibe: "Lembut", emoji: "🌼" };
+        if (u === "warm") return { season: "Spring", tipe: "Warm tone", vibe: "Cerah", emoji: "🌸" };
+        return { season: "Autumn", tipe: "Netral hangat", vibe: "Alami", emoji: "🍂" };
     }
 
     function paletWarna(season) {
-        const data = { Winter: ["#0B132B", "#D90429", "#EDF2F4", "#8D99AE", "#2B2D42"], Summer: ["#B0C4DE", "#D8BFD8", "#C2A7C2", "#E6E6FA", "#9DB4C0"], Autumn: ["#8B4513", "#CD853F", "#BC9A6C", "#556B2F", "#C17A3A"], Spring: ["#F9C74F", "#F9844A", "#90BE6D", "#F9E45B", "#F7B05E"] };
+        const data = {
+            Winter: ["#0B132B", "#D90429", "#EDF2F4", "#8D99AE", "#2B2D42"],
+            Summer: ["#B0C4DE", "#D8BFD8", "#C2A7C2", "#E6E6FA", "#9DB4C0"],
+            Autumn: ["#8B4513", "#CD853F", "#BC9A6C", "#556B2F", "#C17A3A"],
+            Spring: ["#F9C74F", "#F9844A", "#90BE6D", "#F9E45B", "#F7B05E"]
+        };
         return data[season] || data.Spring;
     }
 
@@ -294,10 +94,11 @@
         return list[season];
     }
 
-    function tampilkanHasil(seasonObj, isNew = true) {
+    function tampilkanHasil() {
+        const seasonObj = hitungSeason(jawaban);
         if (!seasonObj) {
-            alert("Harap jawab semua pertanyaan!");
-            return null;
+            alert("Jawab semua pertanyaan dulu ya!");
+            return;
         }
         const palet = paletWarna(seasonObj.season);
         const rec = rekomendasi(seasonObj.season);
@@ -313,95 +114,17 @@
                 </div>
                 <p><strong>Karakteristik:</strong> ${seasonObj.tipe} — ${seasonObj.vibe}</p>
                 <div class="palette">
-                    ${palet.map(w => `<div class="color-chip" style="background:${w};" title="${w}"></div>`).join('')}
+                    ${palet.map(w => `<div class="color-chip" style="background:${w};"></div>`).join('')}
                 </div>
-                <div style="margin-top:12px; text-align:left">
-                    <p><strong>👗 Rekomendasi Outfit:</strong> ${seasonObj.outfitIcon} ${rec.outfit}</p>
-                    <p><strong>💄 Rekomendasi Makeup:</strong> ${seasonObj.makeupIcon} ${rec.makeup}</p>
-                </div>
-                <button id="saveResultBtn" class="save-btn" style="margin-top:12px;">💾 Simpan Hasil ke Riwayat</button>
-                <p style="margin-top:16px; font-size:0.85rem;">🌟 Gunakan warna-warna di atas untuk tampil maksimal!</p>
+                <p><strong>👗 Rekomendasi Outfit:</strong> ${rec.outfit}</p>
+                <p><strong>💄 Rekomendasi Makeup:</strong> ${rec.makeup}</p>
+                <p style="margin-top:16px;">🌟 Gunakan warna di atas untuk tampil maksimal!</p>
             </div>
         `;
-        document.getElementById("saveResultBtn")?.addEventListener("click", () => simpanKeRiwayat(seasonObj));
-        return seasonObj;
     }
-
-    // ========= RIWAYAT (LocalStorage) ==========
-    function simpanKeRiwayat(seasonObj) {
-        if (!seasonObj) return;
-        let history = JSON.parse(localStorage.getItem("colorrun_history")) || [];
-        const newEntry = {
-            id: Date.now(),
-            season: seasonObj.season,
-            emoji: seasonObj.emoji,
-            tipe: seasonObj.tipe,
-            vibe: seasonObj.vibe,
-            tanggal: new Date().toLocaleString(),
-            outfitIcon: seasonObj.outfitIcon,
-            makeupIcon: seasonObj.makeupIcon
-        };
-        history.unshift(newEntry); // tambah di awal
-        if (history.length > 10) history.pop(); // maks 10
-        localStorage.setItem("colorrun_history", JSON.stringify(history));
-        tampilkanRiwayat();
-        alert("✅ Hasil disimpan ke riwayat!");
-    }
-
-    function tampilkanRiwayat() {
-        const history = JSON.parse(localStorage.getItem("colorrun_history")) || [];
-        const container = document.getElementById("historyList");
-        if (history.length === 0) {
-            container.innerHTML = '<p style="color: #b97f5a; text-align: center;">Belum ada riwayat. Setelah analisa, klik "Simpan Hasil".</p>';
-            return;
-        }
-        container.innerHTML = history.map(item => `
-            <div class="history-item">
-                <div><strong>${item.season} ${item.emoji}</strong> - ${item.tipe}<br><small>${item.tanggal}</small></div>
-                <button onclick="hapusSatuRiwayat(${item.id})">🗑️ Hapus</button>
-            </div>
-        `).join('');
-    }
-
-    function hapusSatuRiwayat(id) {
-        let history = JSON.parse(localStorage.getItem("colorrun_history")) || [];
-        history = history.filter(item => item.id !== id);
-        localStorage.setItem("colorrun_history", JSON.stringify(history));
-        tampilkanRiwayat();
-    }
-
-    function hapusSemuaRiwayat() {
-        if (confirm("Hapus semua riwayat?")) {
-            localStorage.removeItem("colorrun_history");
-            tampilkanRiwayat();
-        }
-    }
-
-    // Reset kuis
-    function resetKuis() {
-        jawaban = { 0: null, 1: null, 2: null, 3: null };
-        document.querySelectorAll(".option-btn").forEach(btn => btn.classList.remove("selected"));
-        document.getElementById("hasil").style.display = "none";
-        hasilTerakhir = null;
-    }
-
-    // Event utama
-    document.getElementById("analyzeBtn").addEventListener("click", () => {
-        const seasonObj = hitungSeason(jawaban);
-        if (!seasonObj) {
-            alert("Jawab semua pertanyaan dulu ya!");
-            return;
-        }
-        hasilTerakhir = seasonObj;
-        tampilkanHasil(seasonObj);
-    });
-    document.getElementById("resetBtn").addEventListener("click", resetKuis);
-    document.getElementById("clearHistoryBtn").addEventListener("click", hapusSemuaRiwayat);
-
-    window.hapusSatuRiwayat = hapusSatuRiwayat;
 
     tampilkanPertanyaan();
-    tampilkanRiwayat();
+    document.getElementById("analyzeBtn").addEventListener("click", tampilkanHasil);
 </script>
 </body>
 </html>
