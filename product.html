@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ColoRun | Personal Color Analyzer</title>
+    <title>ColorRun | Personal Color Analyzer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,22 +15,29 @@
     </div>
     <h1>🎨 Personal Color Studio</h1>
     <div class="sub">Temukan musim warnamu: Winter, Summer, Autumn, Spring</div>
-    <div style="background: #f0f8ff; padding: 15px; border-radius: 10px; text-align: center; margin: 20px 0;">
-    <p>💡Klik tombol di bawah untuk menjalankan langsung program Python penentu Personal Color di Google Colab.</p>
-    <a href="https://colab.research.google.com/drive/1x1UgwIcK7mDubHn6tIQGYD4hEpVcWAZS?usp=sharing" target="_blank" style="display: inline-block; background-color: #f9a825; color: #000; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">
-        🐍 Coba Program Python di Colab
-    </a>
-</div>
 
     <div id="questions"></div>
 
     <button class="submit-btn" id="analyzeBtn">✨ Analisa Warna Saya ✨</button>
 
     <div id="hasil" class="result-area"></div>
+
+    <!-- TOMBOL KE GOOGLE COLAB (PYTHON) -->
+    <div style="text-align: center; margin-top: 2rem; padding: 1rem; background: #f0f0f0; border-radius: 1rem;">
+        <p>🐍 <strong>Ingin mencoba langsung program Python-nya?</strong><br>Klik tombol di bawah untuk membuka Google Colab (mode view-only, kode tidak bisa diubah).</p>
+        <a href="https://colab.research.google.com/github/auliazahrasudjarwadi/Moonz-Crew/blob/main/color_analyzer.ipynb?force_copy=true" 
+           target="_blank" 
+           style="display: inline-block; background: #F9AB00; color: #000; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 8px;">
+            🚀 Buka Python di Google Colab
+        </a>
+        <p style="font-size: 0.75rem; margin-top: 8px;">* File akan disalin ke Drive Anda sendiri, sehingga kode asli tetap aman.</p>
+    </div>
+
     <footer>Jawab semua pertanyaan dengan jujur ✨</footer>
 </div>
 
 <script>
+    // ========= DATA PERTANYAAN ==========
     const daftarPertanyaan = [
         { teks: "1️⃣ Lihat warna pembuluh darah di pergelangan tangan (dalam ruangan terang).", pilihan: [{ nilai: "cool", label: "💙 Biru / Ungu" }, { nilai: "warm", label: "💚 Hijau / Zaitun" }, { nilai: "neutral", label: "🤍 Campuran biru-hijau" }] },
         { teks: "2️⃣ Kontras antara warna rambut, kulit, dan mata kamu?", pilihan: [{ nilai: "high", label: "🔆 Tinggi" }, { nilai: "medium", label: "🌈 Sedang" }, { nilai: "low", label: "🍂 Rendah" }] },
@@ -64,6 +71,7 @@
         });
     }
 
+    // ========= LOGIKA UTAMA (RUMUS PERSONAL COLOR) =========
     function hitungSeason(jawab) {
         const u = jawab[0], k = jawab[1], m = jawab[2], r = jawab[3];
         if (!u || !k || !m || !r) return null;
@@ -99,15 +107,18 @@
         };
         return list[season];
     }
-     function getNamaFileGambar(season) {
+
+    // Fungsi untuk mendapatkan nama file gambar (sesuaikan dengan nama file yang diupload)
+    function getNamaFileGambar(season) {
         const mapping = {
-            "Winter": "winter.jpg", https://github.com/auliazahrasudjarwadi/Moonz-Crew/blob/main/assets/images/Color%20palette%20Winter.jpeg?raw=true
-            "Summer": "summer.jpg",https://github.com/auliazahrasudjarwadi/Moonz-Crew/blob/main/assets/images/Color%20palette%20Summer.jpeg?raw=true
-            "Autumn": "autumn.jpg",https://github.com/auliazahrasudjarwadi/Moonz-Crew/blob/main/assets/images/Color%20palette%20Autumn.jpeg?raw=true
-            "Spring": "spring.jpg",https://github.com/auliazahrasudjarwadi/Moonz-Crew/blob/main/assets/images/Color%20palette%20Spring.jpeg?raw=true
+            "Winter": "winter.jpg",
+            "Summer": "summer.jpg",
+            "Autumn": "autumn.jpg",
+            "Spring": "spring.jpg"
         };
         return mapping[season];
     }
+
     function tampilkanHasil() {
         const seasonObj = hitungSeason(jawaban);
         if (!seasonObj) {
@@ -120,6 +131,7 @@
         let bgWarna = { Winter: "#e9f0f5", Summer: "#f2eaf2", Autumn: "#faebd2", Spring: "#fff2df" }[seasonObj.season] || "#fff6ed";
         hasilDiv.style.display = "block";
         hasilDiv.style.background = bgWarna;
+
         hasilDiv.innerHTML = `
             <div style="text-align:center">
                 <h2>✨ Hasil Personal Color ✨</h2>
@@ -140,7 +152,7 @@
                 <p><strong>💄 Rekomendasi Makeup:</strong> ${rec.makeup}</p>
                 <p style="margin-top:16px;">🌟 Gunakan warna di atas untuk tampil maksimal!</p>
             </div>
-                `;
+        `;
     }
 
     tampilkanPertanyaan();
