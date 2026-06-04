@@ -99,7 +99,15 @@
         };
         return list[season];
     }
-
+     function getNamaFileGambar(season) {
+        const mapping = {
+            "Winter": "winter.jpg", https://github.com/auliazahrasudjarwadi/Moonz-Crew/blob/main/assets/images/Color%20palette%20Winter.jpeg?raw=true
+            "Summer": "summer.jpg",https://github.com/auliazahrasudjarwadi/Moonz-Crew/blob/main/assets/images/Color%20palette%20Summer.jpeg?raw=true
+            "Autumn": "autumn.jpg",https://github.com/auliazahrasudjarwadi/Moonz-Crew/blob/main/assets/images/Color%20palette%20Autumn.jpeg?raw=true
+            "Spring": "spring.jpg",https://github.com/auliazahrasudjarwadi/Moonz-Crew/blob/main/assets/images/Color%20palette%20Spring.jpeg?raw=true
+        };
+        return mapping[season];
+    }
     function tampilkanHasil() {
         const seasonObj = hitungSeason(jawaban);
         if (!seasonObj) {
