@@ -130,11 +130,17 @@
                 <div class="palette">
                     ${palet.map(w => `<div class="color-chip" style="background:${w};"></div>`).join('')}
                 </div>
+                <h3 style="margin: 20px 0 10px;">✨ Referensi Gaya ✨</h3>
+                <div style="display: flex; justify-content: center;">
+                    <img src="/assets/images/${getNamaFileGambar(seasonObj.season)}" 
+                         alt="Rekomendasi gaya untuk ${seasonObj.season}"
+                         style="max-width: 280px; width: 100%; height: auto; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                </div>
                 <p><strong>👗 Rekomendasi Outfit:</strong> ${rec.outfit}</p>
                 <p><strong>💄 Rekomendasi Makeup:</strong> ${rec.makeup}</p>
                 <p style="margin-top:16px;">🌟 Gunakan warna di atas untuk tampil maksimal!</p>
             </div>
-        `;
+                `;
     }
 
     tampilkanPertanyaan();
