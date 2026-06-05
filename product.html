@@ -36,7 +36,7 @@
 </div>
 
 <script>
-    // ========= DATA PERTANYAAN ==========
+
     const daftarPertanyaan = [
         { teks: "1️⃣ Lihat warna pembuluh darah di pergelangan tangan (dalam ruangan terang).", pilihan: [{ nilai: "cool", label: "💙 Biru / Ungu" }, { nilai: "warm", label: "💚 Hijau / Zaitun" }, { nilai: "neutral", label: "🤍 Campuran biru-hijau" }] },
         { teks: "2️⃣ Kontras antara warna rambut, kulit, dan mata kamu?", pilihan: [{ nilai: "high", label: "🔆 Tinggi" }, { nilai: "medium", label: "🌈 Sedang" }, { nilai: "low", label: "🍂 Rendah" }] },
@@ -70,7 +70,7 @@
         });
     }
 
-    // ========= LOGIKA UTAMA (RUMUS PERSONAL COLOR) =========
+
     function hitungSeason(jawab) {
         const u = jawab[0], k = jawab[1], m = jawab[2], r = jawab[3];
         if (!u || !k || !m || !r) return null;
@@ -107,17 +107,6 @@
         return list[season];
     }
 
-    // Fungsi untuk mendapatkan nama file gambar (sesuaikan dengan nama file yang diupload)
-    function getNamaFileGambar(season) {
-        const mapping = {
-            "Winter": "winter.jpg",
-            "Summer": "summer.jpg",
-            "Autumn": "autumn.jpg",
-            "Spring": "spring.jpg"
-        };
-        return mapping[season];
-    }
-
     function tampilkanHasil() {
         const seasonObj = hitungSeason(jawaban);
         if (!seasonObj) {
@@ -140,12 +129,6 @@
                 <p><strong>Karakteristik:</strong> ${seasonObj.tipe} — ${seasonObj.vibe}</p>
                 <div class="palette">
                     ${palet.map(w => `<div class="color-chip" style="background:${w};"></div>`).join('')}
-                </div>
-                <h3 style="margin: 20px 0 10px;">✨ Referensi Gaya ✨</h3>
-                <div style="display: flex; justify-content: center;">
-                    <img src="/assets/images/${getNamaFileGambar(seasonObj.season)}" 
-                         alt="Rekomendasi gaya untuk ${seasonObj.season}"
-                         style="max-width: 280px; width: 100%; height: auto; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                 </div>
                 <p><strong>👗 Rekomendasi Outfit:</strong> ${rec.outfit}</p>
                 <p><strong>💄 Rekomendasi Makeup:</strong> ${rec.makeup}</p>
